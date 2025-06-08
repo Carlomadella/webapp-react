@@ -1,13 +1,21 @@
 import React from "react";
-const HomePage = () => { 
+import MovieCard from "../components/MovieCard";
+import { useMovies } from "../context/MovieContext";
+
+const HomePage = () => {
+    const { movieList } = useMovies();
+    
+    const movies = movieList;
     return (
-    <>
-        <h1 className="text-primary">I like to movie it movie it</h1>
-        <h2>
-            <i>Per tutti gli appassionati di film</i>
-        </h2>
-        <div className="row"></div>
-    </>
+        <>
+            <h1 className="text-danger">Boollywood</h1> 
+            <h2> <i>I like to movie it movie it</i> </h2>
+            <div className="row gy-4">
+                {movies.map((movie) => (
+                    <MovieCard movie={movie} key={`movie-${movie.id}`} />
+                ))}
+            </div>
+        </>
     );
 };
 
